@@ -1,0 +1,50 @@
+{
+  "name": "express-typescript-api-boilerplate",
+  "version": "0.1.0",
+  "description": "Boilerplate for Express API's build with TypeScript",
+  "main": "./dist/index.js",
+  "scripts": {
+    "test": "",
+    "prebuild": "rm -rf dist",
+    "build": "babel src --ignore src/**/__tests__ --out-dir dist --extensions '.ts,.tsx'",
+    "babel": "babel-node --extensions '.ts,.tsx' src/index.ts",
+    "start": "nodemon --exec npm run babel"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/villeristi/express-typescript-api-boilerplate.git"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "typescript",
+    "REST"
+  ],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/villeristi/express-typescript-api-boilerplate/issues"
+  },
+  "homepage": "https://github.com/villeristi/express-typescript-api-boilerplate#readme",
+  "resolutions": {
+    "babel-core": "^7.0.0-bridge.0"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.0.0-beta.40",
+    "@babel/core": "^7.0.0-beta.40",
+    "@babel/node": "^7.0.0-beta.40",
+    "@babel/preset-env": "^7.0.0-beta.40",
+    "@babel/preset-react": "^7.0.0-beta.40",
+    "@babel/preset-stage-3": "^7.0.0-beta.40",
+    "@babel/preset-typescript": "^7.0.0-beta.40",
+    "@babel/register": "^7.0.0-beta.40",
+    "@types/jest": "^22.2.0",
+    "babel-plugin-module-resolver": "^3.0.0",
+    "nodemon": "^1.17.2",
+    "tslint": "^5.8.0",
+    "tslint-config-standard": "^7.0.0",
+    "tslint-react": "^3.2.0",
+    "typescript": "^2.6.1",
+    "typescript-babel-jest": "^1.0.5"
+  }
+}

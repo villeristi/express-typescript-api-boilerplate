@@ -1,0 +1,18 @@
+{
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "events": {
+    "restart": "osascript -e 'display notification \"Reloaded\" with title \"Express TypeScript\"'",
+    "crash": "osascript -e 'display notification \"I crashed...\" with title \"Express TypeScript\"'"
+  },
+  "ext": "*",
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules"
+  ],
+  "verbose": true,
+  "watch": [
+    "src"
+  ]
+}

@@ -1,3 +1,3 @@
-import _debug from 'debug';
+import debug from 'debug';
 
-export default _debug('express-typescript:app');
+export default debug('express-typescript:app');

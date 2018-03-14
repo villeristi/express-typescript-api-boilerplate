@@ -4,12 +4,10 @@ import dotenv from 'dotenv';
 import debug from './common/util/debug';
 import { convertToApiException, exceptionHandler, errorRoute } from './common/util/exceptionHandlers';
 
-dotenv.config();
-
 export default class App {
 
   private router: Router;
-  private port: number = process.env.PORT || 3000;
+  private port: number = Number(process.env.PORT) || 3000;
   private app: Application;
   private configs: Array<() => void> = [];
 
@@ -17,17 +15,18 @@ export default class App {
    *
    * @param {string} name
    */
-  constructor(name = 'Express TypeScript') {
-    this.app = new Express();
-    this.router = new Router();
+  constructor(name: string = 'Express TypeScript') {
+    this.app = Express();
+    this.router = Router();
     this.app.set('name', name);
+    dotenv.config();
   }
 
   /**
    *
    * @returns {"http".Server}
    */
-  public serve() {
+  public serve(): any {
     this.configure();
     this.addRoutes();
 
@@ -40,7 +39,7 @@ export default class App {
    * @param shouldEnable
    * @returns {this}
    */
-  public addConfig(config, shouldEnable = true): App {
+  public addConfig(config: any, shouldEnable: boolean = true): App {
     if (!shouldEnable) {
       return this;
     }
@@ -72,7 +71,6 @@ export default class App {
     });
 
     this.app.use(this.router);
-
     this.app.use(convertToApiException);
     this.app.use(errorRoute);
     this.app.use(exceptionHandler);

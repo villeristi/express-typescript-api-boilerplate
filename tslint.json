@@ -1,4 +1,5 @@
 {
+  "defaultSeverity": "error",
   "extends": [
     "tslint-config-standard",
     "tslint:recommended"

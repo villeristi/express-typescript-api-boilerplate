@@ -1,7 +1,8 @@
 node_modules
-build
+dist
 *vscode
 *.log
 *cache
 *.map
 .env
+

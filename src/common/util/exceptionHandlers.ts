@@ -1,26 +1,48 @@
-import { Request, Response, NextFunction, ErrorRequestHandler } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import httpStatus from 'http-status';
 
 import APIException from '../exceptions/ApiException';
 
-export const convertToApiException = (err: any, req: Request, res: Response, next: NextFunction) => {
+/**
+ * Convert exception to ApiException
+ * @param err
+ * @param {e.Request} req
+ * @param {e.Response} res
+ * @param {e.NextFunction} next
+ */
+export const convertToApiException = (err: any, req: Request, res: Response, next: NextFunction): void => {
   console.log(err);
   if (!(err instanceof APIException)) {
-    const apiError = new APIException(err.message, err.status, err.isPublic);
+    const apiError = new APIException(err.message, err.status);
     return next(apiError);
   }
 
   return next(err);
 };
 
-export const exceptionHandler = (err: ErrorRequestHandler, req: Request, res: Response, next: NextFunction) => {
+/**
+ * Exception-handler
+ * @param {e.Error} err
+ * @param {e.Request} req
+ * @param {e.Response} res
+ * @param {e.NextFunction} next
+ * @returns {Response}
+ */
+export const exceptionHandler = (err: any, req: Request, res: Response, next: NextFunction): Response => {
   return res.status(err.status).json({
-    message: err.isPublic ? err.message : httpStatus[err.status],
+    message: err.message,
+    status: httpStatus[err.status],
     stack: process.env.NODE_ENV === 'development' ? err.stack : undefined,
   });
 };
 
-export const errorRoute = (req: Request, res: Response, next: NextFunction) => {
-  const err = new APIException('Not found', httpStatus.NOT_FOUND, true);
+/**
+ * 404-route
+ * @param {e.Request} req
+ * @param {e.Response} res
+ * @param {e.NextFunction} next
+ */
+export const errorRoute = (req: Request, res: Response, next: NextFunction): void => {
+  const err = new APIException('Not found', httpStatus.NOT_FOUND);
   return next(err);
 };

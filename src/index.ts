@@ -4,9 +4,9 @@ import compression from 'compression';
 import helmet from 'helmet';
 import morgaLogger from 'morgan';
 
-const isDev = process.env.NODE_ENV === 'development';
-
 import App from './app';
+
+const isDev = process.env.NODE_ENV === 'development';
 
 const app = new App();
 
@@ -20,5 +20,5 @@ export default app
     }),
     helmet(),
   ])
-  .addConfig(morgaLogger('tiny'), isDev)
+  .addConfig(morgaLogger('dev'), isDev)
   .serve();

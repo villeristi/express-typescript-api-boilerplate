@@ -1,9 +1,10 @@
 export default class BaseException extends Error {
-  constructor(message, status, isPublic) {
+  public status?: number;
+
+  constructor(message: string, status: number) {
     super(message);
     this.message = message;
     this.status = status;
-    this.isPublic = isPublic;
     Error.captureStackTrace(this, this.constructor);
   }
 }

@@ -2,12 +2,12 @@ import { Response } from 'express';
 
 import AbstractRoute from '../common/classes/BaseRoute';
 
-export default class Toka extends AbstractRoute {
+export default class Post extends AbstractRoute {
 
-  method = 'GET';
-  endpoint = '/toka';
+  method = 'POST';
+  endpoint = '/';
 
   respond(req, res, next): Response {
-    return res.json('Toka');
+    return res.json({msg: 'Hallo from post!'});
   }
 }

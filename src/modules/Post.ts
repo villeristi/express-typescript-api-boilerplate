@@ -8,6 +8,6 @@ export default class Post extends AbstractRoute {
   endpoint = '/';
 
   respond(req, res, next): Response {
-    return res.json({msg: 'Hallo from post!'});
+    return res.json({ msg: 'Hallo from post!' });
   }
 }

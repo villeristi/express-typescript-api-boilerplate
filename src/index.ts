@@ -13,8 +13,8 @@ const isDev = process.env.NODE_ENV === 'development';
 const app = new App();
 
 app
-  // Configs can be array of middlewares...
-  .addConfig([
+  // Configs can be an array of middlewares...
+  .use([
     compression(),
     cors(),
     bodyparser.json(),
@@ -23,8 +23,10 @@ app
     }),
     helmet(),
   ])
-  // ...Or single middleware where second argument is a boolean in which condition this middleware should be added
-  .addConfig(morgaLogger('dev'), isDev)
-  .addRoute(IndexRoute)
-  .addRoute(PostRoute)
+  // ...Or a single middleware where the second
+  // argument is a boolean which states if this
+  // middleware should be enabled
+  .use(morgaLogger('dev'), isDev)
+  .route(IndexRoute)
+  .route(PostRoute)
   .serve();

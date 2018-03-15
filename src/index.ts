@@ -6,13 +6,14 @@ import morgaLogger from 'morgan';
 
 import App from './app';
 import IndexRoute from './modules/Index';
-import Toka from './modules/Toka';
+import PostRoute from './modules/Post';
 
 const isDev = process.env.NODE_ENV === 'development';
 
 const app = new App();
 
 app
+  // Configs can be array of middlewares...
   .addConfig([
     compression(),
     cors(),
@@ -22,7 +23,8 @@ app
     }),
     helmet(),
   ])
+  // ...Or single middleware where second argument is a boolean in which condition this middleware should be added
   .addConfig(morgaLogger('dev'), isDev)
   .addRoute(IndexRoute)
-  .addRoute(Toka)
+  .addRoute(PostRoute)
   .serve();

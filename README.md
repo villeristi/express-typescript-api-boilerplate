@@ -33,6 +33,7 @@ Rest of the response-handling is up to you.
  - `yarn build` Builds app as _regular_ Javascript (es2015) to `/dist`
 
 ### Todo:
+- [ ] Route-middleware
 - [ ] Unit-testing
 - [ ] ...?
 

@@ -5,12 +5,14 @@ import helmet from 'helmet';
 import morgaLogger from 'morgan';
 
 import App from './app';
+import IndexRoute from './modules/Index';
+import Toka from './modules/Toka';
 
 const isDev = process.env.NODE_ENV === 'development';
 
 const app = new App();
 
-export default app
+app
   .addConfig([
     compression(),
     cors(),
@@ -21,4 +23,6 @@ export default app
     helmet(),
   ])
   .addConfig(morgaLogger('dev'), isDev)
+  .addRoute(IndexRoute)
+  .addRoute(Toka)
   .serve();

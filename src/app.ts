@@ -1,40 +1,43 @@
-import Express, { Application, Request, Response, Router, NextFunction } from 'express';
+import Express, { Application, Router } from 'express';
 import dotenv from 'dotenv';
 
+import RouteResolver from './common/classes/RouteResolver';
 import debug from './common/util/debug';
 import { convertToApiException, exceptionHandler, errorRoute } from './common/util/exceptionHandlers';
 
 export default class App {
 
   private router: Router;
+  private routeResolver: RouteResolver;
   private port: number = Number(process.env.PORT) || 3000;
   private app: Application;
   private configs: Array<() => void> = [];
 
   /**
-   *
+   * App constructor
    * @param {string} name
    */
   constructor(name: string = 'Express TypeScript') {
     this.app = Express();
     this.router = Router();
+    this.routeResolver = new RouteResolver();
     this.app.set('name', name);
     dotenv.config();
   }
 
   /**
-   *
+   * Init http-listener
    * @returns {"http".Server}
    */
   public serve(): any {
     this.configure();
-    this.addRoutes();
+    this.resolveRoutes();
 
     return this.app.listen(this.port, () => debug(`server started on http://127.0.0.1:${this.port}`));
   }
 
   /**
-   *
+   * Add config-middleware
    * @param config
    * @param shouldEnable
    * @returns {this}
@@ -54,7 +57,22 @@ export default class App {
   }
 
   /**
-   *
+   * Add route to resolver
+   * @param route
+   * @returns {App}
+   */
+  public addRoute(route: any): App {
+    if (Array.isArray(route)) {
+      route.forEach((routeClass) => this.routeResolver.add(routeClass));
+      return this;
+    }
+
+    this.routeResolver.add(route);
+    return this;
+  }
+
+  /**
+   * Attach config middleware to Express
    * @returns {this}
    */
   public configure(): App {
@@ -63,13 +81,10 @@ export default class App {
   }
 
   /**
-   *
+   * Attach routes to router
    */
-  private addRoutes(): void {
-    this.router.get('/', (req: Request, res: Response, next: NextFunction) => {
-      return res.json('Wadaap');
-    });
-
+  private resolveRoutes(): void {
+    this.routeResolver.addToRouter(this.router);
     this.app.use(this.router);
     this.app.use(convertToApiException);
     this.app.use(errorRoute);

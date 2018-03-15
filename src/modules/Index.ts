@@ -8,6 +8,6 @@ export default class Index extends AbstractRoute {
   endpoint = '/';
 
   respond(req, res, next): Response {
-    return res.json('Index');
+    return res.json({msg: 'Index'});
   }
 }

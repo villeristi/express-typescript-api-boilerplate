@@ -16,7 +16,7 @@ Build with:
 2. Clone the repo & run `yarn` from the project root
 
 ### Configuration
-Middleware-functions can be addedd easily though `App.addConfig(middleWareFunction())`. Configs can be array of middlewares or Or single middleware where second argument is a boolean in which condition this middleware should be added. 
+Middleware-functions can be addedd though `App.addConfig(middleWareFunction())`. Configs can be array of middlewares or Or single middleware where second argument is a boolean in which condition this middleware should be added. 
 See [index.ts](src/index.ts) as example.
 
 ### Routing

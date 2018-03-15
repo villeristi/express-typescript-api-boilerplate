@@ -11,7 +11,6 @@ import APIException from '../exceptions/ApiException';
  * @param {e.NextFunction} next
  */
 export const convertToApiException = (err: any, req: Request, res: Response, next: NextFunction): void => {
-  console.log(err);
   if (!(err instanceof APIException)) {
     const apiError = new APIException(err.message, err.status);
     return next(apiError);
@@ -37,12 +36,12 @@ export const exceptionHandler = (err: any, req: Request, res: Response, next: Ne
 };
 
 /**
- * 404-route
+ * 404-exception
  * @param {e.Request} req
  * @param {e.Response} res
  * @param {e.NextFunction} next
  */
-export const errorRoute = (req: Request, res: Response, next: NextFunction): void => {
+export const notFoundException = (req: Request, res: Response, next: NextFunction): void => {
   const err = new APIException('Not found', httpStatus.NOT_FOUND);
   return next(err);
 };

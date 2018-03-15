@@ -21,7 +21,7 @@ Middleware-functions can be addedd though `App.use(middleWareFunction())`. Confi
 See [index.ts](src/index.ts) as example.
 
 ### Routing
-Each route added with `App.addRoute()` has to extend the abstract `AbstractRoute` with overridden members: 
+Each route added with `App.route()` has to extend the abstract `AbstractRoute` with overridden members: 
 - `method: string (http-verb)`
 - `endpoint: string (the actual route)`
 - `respond(): Response`

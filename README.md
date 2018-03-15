@@ -28,7 +28,9 @@ Each route added with `App.addRoute()` has to extend the abstract `AbstractRoute
 Rest of the response-handling is up to you.
 
 ### Available commands:
- - `yarn start`: Executes [Nodemon]
+ - `yarn start`: Executes [Nodemon] & refreshes app on file-change
+ - `yarn lint`: Executes [TSLint] & [TypeScript] `tsc` (typecheck)
+ - `yarn build` Builds app as _regular_ Javascript (es2015) to `/dist`
 
 ### Todo:
 - [ ] Unit-testing

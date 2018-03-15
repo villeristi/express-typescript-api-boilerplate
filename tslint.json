@@ -1,0 +1,25 @@
+{
+  "defaultSeverity": "error",
+  "extends": [
+    "tslint-config-standard",
+    "tslint:recommended"
+  ],
+  "rules": {
+    "arrow-parens": true,
+    "indent": true,
+    "interface-name": false,
+    "jsx-no-multiline-js": false,
+    "member-access": false,
+    "no-console": false,
+    "no-shadowed-variable": false,
+    "no-unused-variable": false,
+    "object-literal-sort-keys": false,
+    "ordered-imports": false,
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape",
+      "jsx-double"
+    ]
+  }
+}

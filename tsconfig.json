@@ -1,0 +1,33 @@
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "esModuleInterop": true,
+    "diagnostics": true,
+    "target": "es6",
+    "importHelpers": true,
+    "noImplicitAny": false,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": false,
+    "strictFunctionTypes": true,
+    "strictNullChecks": true,
+    "declaration": false,
+    "moduleResolution": "node",
+    "sourceMap": true,
+    "outDir": "dist",
+    "baseUrl": ".",
+    "typeRoots": [
+      "node_modules/@types"
+    ],
+    "paths": {
+      "*": [
+        "node_modules/*",
+        "types/*"
+      ]
+    }
+  },
+  "include": [
+    "src/**/*"
+  ]
+}

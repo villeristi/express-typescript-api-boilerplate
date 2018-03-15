@@ -1,11 +1,13 @@
-import BaseRoute from '../common/classes/BaseRoute';
+import { Response } from 'express';
 
-export default class Index extends BaseRoute {
+import AbstractRoute from '../common/classes/BaseRoute';
 
-  private method = 'GETS';
-  private endpoint = '/';
+export default class Index extends AbstractRoute {
 
-  private respond(req, res, next) {
-    res.json('Index');
+  method = 'GET';
+  endpoint = '/';
+
+  respond(req, res, next): Response {
+    return res.json('Index');
   }
 }

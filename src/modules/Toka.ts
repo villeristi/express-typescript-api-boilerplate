@@ -1,11 +1,13 @@
-import BaseRoute from '../common/classes/BaseRoute';
+import { Response } from 'express';
 
-export default class Toka extends BaseRoute {
+import AbstractRoute from '../common/classes/BaseRoute';
 
-  private method = 'GET';
-  private endpoint = '/toka';
+export default class Toka extends AbstractRoute {
 
-  private respond(req, res, next) {
-    res.json('Toka');
+  method = 'GET';
+  endpoint = '/toka';
+
+  respond(req, res, next): Response {
+    return res.json('Toka');
   }
 }

@@ -12,7 +12,7 @@
     "member-access": false,
     "no-console": false,
     "no-shadowed-variable": false,
-    "no-unused-variable": [true, {"ignore-pattern": "^_"}],
+    "no-unused-variable": false,
     "object-literal-sort-keys": false,
     "ordered-imports": false,
     "quotemark": [

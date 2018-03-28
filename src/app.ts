@@ -1,4 +1,4 @@
-import Express, { Application, Router } from 'express';
+import Express, { Application, Router, Response } from 'express';
 import dotenv from 'dotenv';
 
 import RouteResolver from './common/classes/RouteResolver';
@@ -11,7 +11,7 @@ export default class App {
   private routeResolver: RouteResolver;
   private port: number = Number(process.env.PORT) || 3000;
   private app: Application;
-  private configs: Array<() => void> = [];
+  private configs: any = [];
 
   /**
    * App constructor

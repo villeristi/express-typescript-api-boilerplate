@@ -31,7 +31,6 @@ export default class App {
    */
   public serve(): any {
     this.configure();
-    this.resolveRoutes();
 
     return this.app.listen(this.port, () => debug(`server started on http://127.0.0.1:${this.port}`));
   }
@@ -76,17 +75,16 @@ export default class App {
    * @returns {this}
    */
   public configure(): App {
+
+    // Add router & some base-handlers to configs
+    this.configs = this.configs.concat([
+      this.router,
+      convertToApiException,
+      notFoundException,
+      exceptionHandler,
+    ]);
+
     this.configs.forEach((config) => this.app.use(config));
     return this;
-  }
-
-  /**
-   * Attach routes to router
-   */
-  private resolveRoutes(): void {
-    this.app.use(this.router);
-    this.app.use(convertToApiException);
-    this.app.use(notFoundException);
-    this.app.use(exceptionHandler);
   }
 }

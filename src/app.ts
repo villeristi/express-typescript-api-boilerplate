@@ -2,7 +2,7 @@ import Express, { Application, Router, Response } from 'express';
 import dotenv from 'dotenv';
 
 import RouteResolver from './common/classes/RouteResolver';
-import debug from './common/util/debug';
+import { debug } from './common/util/debug';
 import { convertToApiException, exceptionHandler, notFoundException } from './common/util/exceptionHandlers';
 
 export default class App {

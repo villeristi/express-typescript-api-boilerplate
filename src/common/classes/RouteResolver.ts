@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import debug from '../util/debug';
+import { debug } from '../util/debug';
 
 export default class RouteResolver {
   private router;
@@ -18,7 +18,7 @@ export default class RouteResolver {
    */
   public add(route: any): void {
     const routeClass = new route();
-    debug('Route-class: ', routeClass);
+    debug('Registered route: ', routeClass);
     routeClass.attachToRouter(this.router);
   }
 }

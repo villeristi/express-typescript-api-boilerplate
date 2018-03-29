@@ -1,6 +1,6 @@
 {
   "name": "express-typescript-api-boilerplate",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Boilerplate for Express API's build with TypeScript",
   "main": "./dist/index.js",
   "scripts": {
@@ -63,7 +63,7 @@
     "nodemon": "^1.17.2",
     "tslint": "^5.8.0",
     "tslint-config-standard": "^7.0.0",
-    "typescript": "^2.6.1",
+    "typescript": "^2.8.0",
     "typescript-babel-jest": "^1.0.5"
   }
 }

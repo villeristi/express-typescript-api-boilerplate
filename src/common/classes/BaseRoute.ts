@@ -1,21 +1,14 @@
 import { Request, Response, NextFunction, Router } from 'express';
+import { BaseRouteInterface } from '../../types';
 
-type httpVerbs = 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | 'OPTIONS';
-
-export interface BaseRouteInterface {
-  method: httpVerbs;
-  endpoint: string;
-  respond: (req: Request, res: Response, next: NextFunction) => Response;
-  attachToRouter: (Router) => void;
-}
-
-export default abstract class AbstractRoute implements BaseRouteInterface {
+export default abstract class BaseRoute implements BaseRouteInterface {
 
   abstract method;
   abstract endpoint;
+  public middleware = new Array();
 
   public attachToRouter(router: Router): void {
-    router[this.method.toLowerCase()](this.endpoint, this.respond);
+    router[this.method.toLowerCase()](this.endpoint, [...this.middleware], this.respond);
   }
 
   abstract respond(req: Request, res: Response, next: NextFunction): any;

@@ -1,8 +1,8 @@
 import { Response } from 'express';
 
-import AbstractRoute from '../common/classes/BaseRoute';
+import BaseRoute from '../../common/classes/BaseRoute';
 
-export default class Index extends AbstractRoute {
+export default class Index extends BaseRoute {
 
   method = 'GET';
   endpoint = '/';

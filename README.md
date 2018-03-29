@@ -17,13 +17,14 @@ Build with:
 2. Clone the repo & run `yarn` from the project root
 
 ### Configuration
-Middleware-functions can be addedd though `App.use(middleWareFunction())`. Configs can be array of middlewares or a single middleware-function where the second argument is a boolean which states if this middleware should be enabled. 
+Middleware-functions can be addedd though `App.use(middleWareFunction())`. Configs can be array of middlewares or a single middleware-function where the second argument is a boolean which states if this middleware should be enabled.
 See [index.ts](src/index.ts) as example.
 
 ### Routing
-Each route added with `App.route()` has to extend the abstract `AbstractRoute` with overridden members: 
+Each route added with `App.route()` has to extend the abstract `BaseRoute`-class with overridden members:
 - `method: string (http-verb)`
 - `endpoint: string (the actual route)`
+- `middleware`: array (optional middleware-functions for this specific route)
 - `respond(): Response`
 
 Rest of the response-handling is up to you.
@@ -34,8 +35,8 @@ Rest of the response-handling is up to you.
  - `yarn build` Builds app as _regular_ Javascript (es2015) to `/dist`
 
 ### Todo:
-- [ ] Route-middleware
-- [ ] Unit-testing
+- ~~[x] Route-middleware~~
+- [ ] Unit tests
 - [ ] ...?
 
 [Express]:https://expressjs.com/

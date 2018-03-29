@@ -1,3 +1,18 @@
-import debug from 'debug';
+import { Request, Response, NextFunction } from 'express';
+import _debug from 'debug';
 
-export default debug('express-typescript:app');
+/**
+ * Default debug-instance
+ * @type {debug.IDebugger}
+ */
+export const debug = _debug('express-typescript:app');
+
+/**
+ * Inject debug to req.debug
+ * @returns {(req: e.Request, res: e.Response, next: e.NextFunction) => void}
+ */
+export const debugMiddleware = () => (req: Request, res: Response, next: NextFunction) => {
+  console.log('HEHEH');
+  req.debug = debug;
+  next();
+};

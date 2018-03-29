@@ -1,3 +1,7 @@
-import debug from 'debug';
+import _debug from 'debug';
 
-export default debug('express-typescript:app');
+/**
+ * Default debug-instance
+ * @type {debug.IDebugger}
+ */
+export const debug = _debug('express-typescript:app');

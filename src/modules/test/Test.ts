@@ -10,6 +10,6 @@ export default class Test extends BaseRoute {
   middleware = [testMiddleware];
 
   respond(req, res, next): Response {
-    return res.json({ msg: 'Index' });
+    return res.json({ msg: 'Test' });
   }
 }

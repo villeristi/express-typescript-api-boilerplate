@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction, Router } from 'express';
-import { BaseRouteInterface } from '../../types';
+import { BaseRouteInterface } from '../../../types';
 
 export default abstract class BaseRoute implements BaseRouteInterface {
 

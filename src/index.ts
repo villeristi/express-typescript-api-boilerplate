@@ -4,9 +4,13 @@ import compression from 'compression';
 import helmet from 'helmet';
 import morgaLogger from 'morgan';
 
+import { debugMiddleware } from './common/util/debug';
+
 import App from './app';
-import IndexRoute from './modules/Index';
-import PostRoute from './modules/Post';
+
+import IndexRoute from './modules/index/Index';
+import PostRoute from './modules/index/Post';
+import TestRoute from './modules/test/Test';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -27,6 +31,10 @@ app
   // argument is a boolean which states if this
   // middleware should be enabled
   .use(morgaLogger('dev'), isDev)
-  .route(IndexRoute)
-  .route(PostRoute)
+  .use(debugMiddleware(), isDev)
+  .route([
+    IndexRoute,
+    PostRoute,
+    TestRoute,
+  ])
   .serve();

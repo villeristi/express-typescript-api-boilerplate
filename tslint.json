@@ -11,6 +11,7 @@
     "jsx-no-multiline-js": false,
     "member-access": false,
     "no-console": false,
+    "no-namespace": false,
     "no-shadowed-variable": false,
     "no-unused-variable": false,
     "object-literal-sort-keys": false,
@@ -20,6 +21,11 @@
       "single",
       "avoid-escape",
       "jsx-double"
+    ],
+    "semicolon": [
+      true,
+      "always",
+      "ignore-interfaces"
     ]
   }
 }

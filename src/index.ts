@@ -31,7 +31,7 @@ app
   // argument is a boolean which states if this
   // middleware should be enabled
   .use(morgaLogger('dev'), isDev)
-  .use(debugMiddleware(), isDev)
+  .use(debugMiddleware())
   .route([
     IndexRoute,
     PostRoute,

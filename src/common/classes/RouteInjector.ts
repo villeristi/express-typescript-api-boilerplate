@@ -1,11 +1,11 @@
 import { Router } from 'express';
 import { debug } from '../util/debug';
 
-export default class RouteResolver {
+export default class RouteInjector {
   private router;
 
   /**
-   * RouteResolver constructor
+   * RouteInjector constructor
    * @param {e.Router} router
    */
   constructor(router: Router) {

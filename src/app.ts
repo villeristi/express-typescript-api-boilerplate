@@ -77,12 +77,13 @@ export default class App {
   public configure(): App {
 
     // Add router & some base-handlers to configs
-    this.configs = this.configs.concat([
+    this.configs = [
+      ...this.configs,
       this.router,
       convertToApiException,
       notFoundException,
       exceptionHandler,
-    ]);
+    ];
 
     this.configs.forEach((config) => this.app.use(config));
     return this;

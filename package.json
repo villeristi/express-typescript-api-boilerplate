@@ -4,7 +4,7 @@
   "description": "Boilerplate for Express API's build with TypeScript",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "",
+    "test": "exit 1",
     "prebuild": "rm -rf dist",
     "build": "babel src --ignore src/**/__tests__ --out-dir dist --extensions '.ts,.tsx'",
     "babel": "DEBUG=express-typescript:* babel-node --extensions '.ts,.tsx' src/index.ts",

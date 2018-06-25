@@ -8,6 +8,6 @@ export default class Index extends BaseRoute {
   endpoint = '/';
 
   respond(req, res, next): Response {
-    return res.json({ msg: 'Index' });
+    return res.json({ msg: 'Index-route' });
   }
 }

@@ -10,7 +10,7 @@ import App from './app';
 
 import IndexRoute from './modules/index/Index';
 import PostRoute from './modules/index/Post';
-import TestRoute from './modules/test/Test';
+import SampleRoute from './modules/sample/Sample';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -35,6 +35,6 @@ app
   .route([
     IndexRoute,
     PostRoute,
-    TestRoute,
+    SampleRoute,
   ])
   .serve();

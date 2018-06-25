@@ -8,6 +8,6 @@ export default class Post extends BaseRoute {
   endpoint = '/';
 
   respond(req, res, next): Response {
-    return res.json({ msg: 'Hallo from post!' });
+    return res.json({ msg: 'Index-route with POST-method' });
   }
 }

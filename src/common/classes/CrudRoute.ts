@@ -1,13 +1,8 @@
 import { Request, Response, NextFunction, Router } from 'express';
-import { CrudRouteInterface } from '../../../types';
-// import APIException from '../exceptions/ApiException';
+import { CrudRouteInterface, HTTP_VERBS_MAP } from '../../../types';
+import APIException from '../exceptions/ApiException';
 
-const METHODS = [
-  'get',
-  'post',
-  'put',
-  'delete',
-];
+const ERROR_MSG = 'Forbidden method';
 
 export default abstract class CrudRoute implements CrudRouteInterface {
 
@@ -24,12 +19,30 @@ export default abstract class CrudRoute implements CrudRouteInterface {
       router.param(this.paramName, this.handleParam);
     }
 
-    // router.get(`${this.endpoint}/:${this.paramName}?`, [...this.middleware], this.get);
+    Object.keys(HTTP_VERBS_MAP).forEach((verb) => {
+      router[verb](`${this.endpoint}/:${this.paramName}?`, [...this.middleware], this[verb]);
+    });
   }
 
   public handleParam?(req, res: Response, next: NextFunction, value: any, name: string): any;
 
-  // public get?(req: Request, res: Response, next: NextFunction): any {
-  //   throw new APIException('Forbidden method', 403);
-  // }
+  public get?(req: Request, res: Response, next: NextFunction): any {
+    throw new APIException(ERROR_MSG, 403);
+  }
+
+  public put?(req: Request, res: Response, next: NextFunction): any {
+    throw new APIException(ERROR_MSG, 403);
+  }
+
+  public patch?(req: Request, res: Response, next: NextFunction): any {
+    throw new APIException(ERROR_MSG, 403);
+  }
+
+  public post?(req: Request, res: Response, next: NextFunction): any {
+    throw new APIException(ERROR_MSG, 403);
+  }
+
+  public delete?(req: Request, res: Response, next: NextFunction): any {
+    throw new APIException(ERROR_MSG, 403);
+  }
 }

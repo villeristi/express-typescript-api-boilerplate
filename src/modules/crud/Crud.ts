@@ -23,7 +23,6 @@ export default class Crud extends CrudRoute implements CrudRouteInterface {
   }
 
   get(req: Request, res: Response, next: NextFunction): Response {
-    req.debug(req.params);
     return res.json({ msg: 'Crud GET' });
   }
 

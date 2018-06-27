@@ -5,6 +5,7 @@
     "@babel/typescript"
   ],
   "plugins": [
+    "@babel/plugin-transform-runtime",
     ["module-resolver", {
       "extensions": [".ts", ".tsx"],
       "root": ["./src"]

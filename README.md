@@ -21,13 +21,22 @@ Middleware-functions can be addedd though `App.use(middleWareFunction())`. Confi
 See [index.ts](src/index.ts) as example.
 
 ### Routing
-Each route added with `App.route()` has to extend the abstract `BaseRoute`-class with overridden members:
+Each route added with `App.route()` has to extend the abstract `BaseRoute`-class or `CrudRoute`-class with overridden members:
+
+**BaseRoute**
+
 - `method: string (http-verb)`
 - `endpoint: string (the actual route)`
 - `middleware`: array (optional middleware-functions for this specific route)
 - `respond(): Response`
 
-Rest of the response-handling is up to you.
+**CrudRoute**
+
+- `endpoint: string (the actual route)`
+- `middleware`: array (optional middleware-functions for this specific route)
+- `[HTTP-VERB](): Response`: HTTP-verbs which this route supports. For example, if there's no PUT-method defined & PUT-request is coming to this route => an Exception is thrown.
+
+See [modules](src/modules) as example.
 
 ### Available commands:
  - `yarn start`: Executes [Nodemon] & refreshes app on file-change
@@ -36,6 +45,7 @@ Rest of the response-handling is up to you.
 
 ### Todo:
 - [x] Route-middleware
+- [x] Resourseful routing
 - [ ] Unit tests
 - [ ] ...?
 

@@ -11,6 +11,7 @@ import App from './app';
 import IndexRoute from './modules/index/Index';
 import PostRoute from './modules/index/Post';
 import SampleRoute from './modules/sample/Sample';
+import CrudRoute from './modules/crud/Crud';
 
 const isDev = process.env.NODE_ENV === 'development';
 
@@ -36,5 +37,6 @@ app
     IndexRoute,
     PostRoute,
     SampleRoute,
+    CrudRoute,
   ])
   .serve();

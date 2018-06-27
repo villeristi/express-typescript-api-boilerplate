@@ -1,10 +1,11 @@
 import { Response } from 'express';
 
+import { BaseRouteInterface, httpVerbs } from '../../../types';
 import BaseRoute from '../../common/classes/BaseRoute';
 
-export default class Index extends BaseRoute {
+export default class Index extends BaseRoute implements BaseRouteInterface {
 
-  method = 'GET';
+  method: httpVerbs = 'GET';
   endpoint = '/';
 
   respond(req, res, next): Response {

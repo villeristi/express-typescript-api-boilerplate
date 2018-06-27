@@ -1,8 +1,17 @@
-import { Request, Response, NextFunction, Router } from 'express';
-import { CrudRouteInterface, HTTP_VERBS_MAP } from '../../../types';
+import { Response, NextFunction, Router } from 'express';
+import { CrudRouteInterface } from '../../../types';
 import APIException from '../exceptions/ApiException';
 
-const ERROR_MSG = 'Forbidden method';
+const HTTP_VERBS = [
+  'get',
+  'post',
+  'put',
+  'delete',
+  'patch',
+];
+
+const ERROR_MSG = 'Not found';
+const ERROR_STATUS = 404;
 
 export default abstract class CrudRoute implements CrudRouteInterface {
 
@@ -13,36 +22,33 @@ export default abstract class CrudRoute implements CrudRouteInterface {
   public attachToRouter(router: Router): void {
 
     /**
-     * If we have a named parameter in URL & handleParam is overridden
+     * If we have a named parameter in URL & handleParam is overridden =>
      */
     if (this.handleParam) {
       router.param(this.paramName, this.handleParam);
     }
 
-    Object.keys(HTTP_VERBS_MAP).forEach((verb) => {
-      router[verb](`${this.endpoint}/:${this.paramName}?`, [...this.middleware], this[verb]);
+    HTTP_VERBS.forEach((verb) => {
+      router[verb](`${this.endpoint}/:${this.paramName}?`, [...this.middleware], this[verb] || this.defaultResponse);
     });
   }
 
+  /**
+   * Handle param in url
+   * @see https://expressjs.com/en/4x/api.html#router.param
+   * @param req
+   * @param {e.Response} res
+   * @param {e.NextFunction} next
+   * @param value
+   * @param {string} name
+   * @returns {any}
+   */
   public handleParam?(req, res: Response, next: NextFunction, value: any, name: string): any;
 
-  public get?(req: Request, res: Response, next: NextFunction): any {
-    throw new APIException(ERROR_MSG, 403);
-  }
-
-  public put?(req: Request, res: Response, next: NextFunction): any {
-    throw new APIException(ERROR_MSG, 403);
-  }
-
-  public patch?(req: Request, res: Response, next: NextFunction): any {
-    throw new APIException(ERROR_MSG, 403);
-  }
-
-  public post?(req: Request, res: Response, next: NextFunction): any {
-    throw new APIException(ERROR_MSG, 403);
-  }
-
-  public delete?(req: Request, res: Response, next: NextFunction): any {
-    throw new APIException(ERROR_MSG, 403);
+  /**
+   * If child-class has no method defined => throw ApiException
+   */
+  private defaultResponse() {
+    throw new APIException(ERROR_MSG, ERROR_STATUS);
   }
 }
